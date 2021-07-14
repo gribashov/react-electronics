@@ -110,10 +110,14 @@ function App() {
         {/* banner */}
         <div className="block items-center p-10">
           <div className="relative h-80">
-            <img src={banner} alt="banner" className="h-full w-full absolute" />
+            <img
+              src={banner}
+              alt="banner"
+              className="h-full w-full absolute select-none"
+            />
             <div className="absolute left-20 top-20">
-              <div className="text-4xl font-bold select-none">Macbook M1</div>
-              <div className="text-4xl font-bold text-custom-green select-none">
+              <div className="text-4xl font-bold">Macbook M1</div>
+              <div className="text-4xl font-bold text-custom-green">
                 - будущее
               </div>
               <div className="mt-10">
@@ -179,7 +183,7 @@ function App() {
         <div className="flex items-center justify-between p-10">
           {/* card */}
           <div>
-            <div className="bg-card-gray px-8 py-4 rounded-lg w-52 h-64 relative">
+            <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
                   <svg
@@ -199,14 +203,14 @@ function App() {
               <img
                 src={product1}
                 alt="product1"
-                className="w-32 mx-2 flex-shrink-0"
+                className="w-32 h-28 mx-2 flex-shrink-0"
               />
-              <div className="text-base w-36 mt-2">
+              <div className="text-sm w-36 mt-2">
                 Умные часы Huawei 12 Pro Max
               </div>
               <div className="flex items-center justify-between mt-2">
                 <div>
-                  <small>ЦЕНА:</small>
+                  <small className="text-gray-400">ЦЕНА:</small>
                   <div className="font-bold text-base">12 800 руб.</div>
                 </div>
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -228,7 +232,7 @@ function App() {
           </div>
           {/* card */}
           <div className="ml-10">
-            <div className="bg-card-gray px-8 py-4 rounded-lg w-52 h-64 relative">
+            <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
                   <svg
@@ -248,14 +252,14 @@ function App() {
               <img
                 src={product2}
                 alt="product2"
-                className="w-32 mx-2 flex-shrink-0"
+                className="w-32 h-28 mx-2 flex-shrink-0"
               />
-              <div className="text-base w-36 mt-2">
-                Умные часы Huawei 12 Pro Max
+              <div className="text-sm w-36 mt-2">
+                Bluetooth наушники Beats Solo Blue
               </div>
               <div className="flex items-center justify-between mt-2">
                 <div>
-                  <small>ЦЕНА:</small>
+                  <small className="text-gray-400">ЦЕНА:</small>
                   <div className="font-bold text-base">12 800 руб.</div>
                 </div>
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -277,7 +281,7 @@ function App() {
           </div>
           {/* card */}
           <div className="ml-10">
-            <div className="bg-card-gray px-8 py-4 rounded-lg w-52 h-64 relative">
+            <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
                   <svg
@@ -297,14 +301,14 @@ function App() {
               <img
                 src={product3}
                 alt="product3"
-                className="w-32 mx-2 flex-shrink-0"
+                className="w-32 h-28 mx-2 flex-shrink-0"
               />
-              <div className="text-base w-36 mt-2">
-                Умные часы Huawei 12 Pro Max
+              <div className="text-sm w-36 mt-2">
+                Игровые наушники Blazer Gaming Plus
               </div>
               <div className="flex items-center justify-between mt-2">
                 <div>
-                  <small>ЦЕНА:</small>
+                  <small className="text-gray-400">ЦЕНА:</small>
                   <div className="font-bold text-base">12 800 руб.</div>
                 </div>
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -326,7 +330,7 @@ function App() {
           </div>
           {/* card */}
           <div className="ml-10">
-            <div className="bg-card-gray px-8 py-4 rounded-lg w-52 h-64 relative">
+            <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
                   <svg
@@ -346,14 +350,14 @@ function App() {
               <img
                 src={product4}
                 alt="product4"
-                className="w-32 mx-2 flex-shrink-0"
+                className="w-32 h-28 mx-2 flex-shrink-0"
               />
-              <div className="text-base w-36 mt-2">
-                Умные часы Huawei 12 Pro Max
+              <div className="text-sm w-36 mt-2">
+                Офисный ноутбук Matepad Lumix 3000
               </div>
               <div className="flex items-center justify-between mt-2">
                 <div>
-                  <small>ЦЕНА:</small>
+                  <small className="text-gray-400">ЦЕНА:</small>
                   <div className="font-bold text-base">12 800 руб.</div>
                 </div>
                 <div className="bg-white p-2 cursor-pointer rounded-md">
