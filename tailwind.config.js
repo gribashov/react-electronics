@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "custom-green": "#A5D364",
         "custom-gray": "#F3F3F3",
+        "card-gray": "#F5F5F5",
       },
     },
   },
