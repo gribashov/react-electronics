@@ -180,9 +180,9 @@ function App() {
           </div>
         </div>
         {/* cards arr */}
-        <div className="flex items-center justify-between p-10">
+        <div className="flex items-center justify-between flex-wrap pt-10 pr-10">
           {/* card */}
-          <div>
+          <div className="mb-10 ml-10">
             <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -231,7 +231,7 @@ function App() {
             </div>
           </div>
           {/* card */}
-          <div className="ml-10">
+          <div className="mb-10 ml-10">
             <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -280,7 +280,7 @@ function App() {
             </div>
           </div>
           {/* card */}
-          <div className="ml-10">
+          <div className="mb-10 ml-10">
             <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
@@ -329,7 +329,7 @@ function App() {
             </div>
           </div>
           {/* card */}
-          <div className="ml-10">
+          <div className="mb-10 ml-10">
             <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative">
               <div className="absolute">
                 <div className="bg-white p-2 cursor-pointer rounded-md">
