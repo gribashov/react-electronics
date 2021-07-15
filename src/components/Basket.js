@@ -1,6 +1,3 @@
-import product1 from "./../assets/images/product-1.jpg";
-import product6 from "./../assets/images/product-6.jpg";
-
 function Basket() {
   return (
     <div className="overlay hidden absolute left-0 top-0">
@@ -13,7 +10,7 @@ function Basket() {
           <div className="mx-10 mb-10">
             <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
               <img
-                src={product1}
+                src="/img/product-1.jpg"
                 alt="product1"
                 className="w-20 flex-shrink-0"
               />
@@ -41,7 +38,7 @@ function Basket() {
           <div className="mx-10 mb-10">
             <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
               <img
-                src={product6}
+                src="/img/product-6.jpg"
                 alt="product6"
                 className="w-20 flex-shrink-0"
               />

@@ -1,11 +1,12 @@
-import product1 from "./../assets/images/product-1.jpg";
-
-function Card() {
+function Card(props) {
   return (
     <div className="mb-10 ml-10">
       <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative hover:shadow-md transform hover:-translate-y-2 transition duration-200">
         <div className="absolute">
-          <div className="bg-white p-2 cursor-pointer rounded-md">
+          <div
+            onClick={props.onClickFav}
+            className="bg-white p-2 cursor-pointer rounded-md"
+          >
             <svg
               width="15"
               height="14"
@@ -21,17 +22,20 @@ function Card() {
           </div>
         </div>
         <img
-          src={product1}
-          alt="product1"
-          className="w-32 h-28 mx-2 flex-shrink-0"
+          className="w-32 h-28 mx-2 flex-shrink-0 select-none"
+          src={props.img}
+          alt={props.title}
         />
-        <div className="text-sm w-36 mt-2">Умные часы Huawei 12 Pro Max</div>
+        <div className="text-sm w-36 mt-2">{props.title}</div>
         <div className="flex items-center justify-between mt-2">
           <div>
             <small className="text-gray-400">ЦЕНА:</small>
-            <div className="font-bold text-base">12 800 руб.</div>
+            <div className="font-bold text-base">{props.price} руб.</div>
           </div>
-          <div className="bg-white p-2 cursor-pointer rounded-md">
+          <div
+            onClick={props.onClickAdd}
+            className="bg-white p-2 cursor-pointer rounded-md"
+          >
             <svg
               width="12"
               height="12"
