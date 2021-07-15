@@ -16,7 +16,7 @@ function App() {
           <div className="drawer absolute right-0 flex flex-col">
             <div className="p-10 text-2xl font-bold">Корзина</div>
             {/* basket cards arr */}
-            <div className="flex-1 overflow-y-scroll">
+            <div className="flex-1 overflow-y-scroll md:no-scrollbar mb-10">
               {/* card in basket */}
               <div className="mx-10 mb-10">
                 <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
