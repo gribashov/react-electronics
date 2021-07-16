@@ -1,9 +1,14 @@
 function Basket() {
   return (
-    <div className="overlay hidden absolute left-0 top-0">
+    <div className="overlay fixed left-0 top-0 mx-auto">
       {/* basket */}
-      <div className="basket absolute right-0 flex flex-col">
-        <div className="p-10 text-2xl font-bold">Корзина</div>
+      <div className="basket fixed right-0 flex flex-col">
+        <div className="flex items-center justify-between p-10">
+          <div className="text-2xl font-bold">Корзина</div>
+          <div className="bg-custom-red px-5 py-2 cursor-pointer rounded-lg">
+            <div className="text-white text-sm">Закрыть</div>
+          </div>
+        </div>
         {/* basket cards arr */}
         <div className="flex-1 overflow-y-scroll md:no-scrollbar mb-10">
           {/* card in basket */}
@@ -75,7 +80,7 @@ function Basket() {
             <div></div>
             <li className="font-bold">1 806 руб.</li>
           </ul>
-          <div className="mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-custom-green">
+          <div className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-custom-green">
             <a href="/#" className="text-white">
               Оформить заказ
             </a>

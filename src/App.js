@@ -30,9 +30,9 @@ const arr = [
 function App() {
   return (
     <div className="App">
+      {/* basket */}
+      <Basket />
       <div className="wrapper mx-auto relative">
-        {/* basket */}
-        <Basket />
         {/* header */}
         <Header />
         {/* br */}

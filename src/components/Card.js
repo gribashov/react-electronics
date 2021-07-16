@@ -25,7 +25,11 @@ function Card(props) {
             onClick={handleFav}
             className="bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
           >
-            <img src={isFav ? redFavicon : grayFavicon} alt="icon" />
+            <img
+              src={isFav ? redFavicon : grayFavicon}
+              alt="icon"
+              className="select-none"
+            />
           </div>
         </div>
         <img
