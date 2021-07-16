@@ -10,11 +10,13 @@ function App() {
   const [goods, setGoods] = React.useState([]);
   const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
 
-  fetch("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
-    .then((res) => {
-      return res.json();
-    })
-    .then((json) => setGoods(json));
+  React.useEffect(() => {
+    fetch("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => setGoods(json));
+  }, []);
 
   return (
     <div className="App">
