@@ -1,11 +1,14 @@
-function Basket() {
+function Basket(props) {
   return (
     <div className="overlay fixed left-0 top-0 mx-auto">
       {/* basket */}
       <div className="basket fixed right-0 flex flex-col">
         <div className="flex items-center justify-between p-10">
           <div className="text-2xl font-bold">Корзина</div>
-          <div className="bg-custom-red px-5 py-2 cursor-pointer rounded-lg">
+          <div
+            onClick={props.handleCloseBasket}
+            className="bg-custom-red px-5 py-2 cursor-pointer rounded-lg"
+          >
             <div className="text-white text-sm">Закрыть</div>
           </div>
         </div>

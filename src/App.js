@@ -1,3 +1,5 @@
+import React from "react";
+
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Basket from "./components/Basket";
@@ -28,13 +30,26 @@ const arr = [
 ];
 
 function App() {
+  const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
+
   return (
     <div className="App">
       {/* basket */}
-      <Basket />
+      {isVisibleBasket ? (
+        <Basket
+          handleCloseBasket={() => {
+            setIsVisibleBasket(false);
+          }}
+        />
+      ) : null}
+      {/* container */}
       <div className="wrapper mx-auto relative">
         {/* header */}
-        <Header />
+        <Header
+          handleOpenBasket={() => {
+            setIsVisibleBasket(true);
+          }}
+        />
         {/* br */}
         <div className="w-full border-b"></div>
         {/* banner */}

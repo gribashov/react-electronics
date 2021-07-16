@@ -1,4 +1,4 @@
-function Header() {
+function Header(props) {
   return (
     <div className="flex items-center justify-between p-10">
       {/* left side */}
@@ -30,7 +30,7 @@ function Header() {
       </div>
       {/* right side */}
       <div className="flex items-center justify-center">
-        <div className="flex items-center">
+        <div onClick={props.handleOpenBasket} className="flex items-center">
           <svg
             className="cursor-pointer"
             width="18"
