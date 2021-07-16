@@ -35,13 +35,13 @@ function App() {
   return (
     <div className="App">
       {/* basket */}
-      {isVisibleBasket ? (
+      {isVisibleBasket && (
         <Basket
           handleCloseBasket={() => {
             setIsVisibleBasket(false);
           }}
         />
-      ) : null}
+      )}
       {/* container */}
       <div className="wrapper mx-auto relative">
         {/* header */}

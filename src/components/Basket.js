@@ -9,7 +9,7 @@ function Basket(props) {
             onClick={props.handleCloseBasket}
             className="bg-custom-red px-5 py-2 cursor-pointer rounded-lg"
           >
-            <div className="text-white text-sm">Закрыть</div>
+            <div className="text-white text-sm select-none">Закрыть</div>
           </div>
         </div>
         {/* basket cards arr */}

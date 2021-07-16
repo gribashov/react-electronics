@@ -29,10 +29,9 @@ function Header(props) {
         </div>
       </div>
       {/* right side */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center cursor-pointer">
         <div onClick={props.handleOpenBasket} className="flex items-center">
           <svg
-            className="cursor-pointer"
             width="18"
             height="20"
             viewBox="0 0 20 20"
@@ -61,9 +60,7 @@ function Header(props) {
               strokeLinejoin="round"
             />
           </svg>
-          <div className="ml-2 text-gray-500 font-semibold cursor-pointer">
-            11000 руб.
-          </div>
+          <div className="ml-2 text-gray-500 font-semibold">11000 руб.</div>
         </div>
 
         <svg
