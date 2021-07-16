@@ -1,4 +1,15 @@
+import React from "react";
+
+import addicon from "./../assets/icons/addicon.svg";
+import success from "./../assets/icons/success.svg";
+
 function Card(props) {
+  const [isAdded, setIsAdded] = React.useState(false);
+
+  const handleAdd = () => {
+    setIsAdded(!isAdded);
+  };
+
   return (
     <div className="mb-10 ml-10">
       <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative hover:shadow-md transform hover:-translate-y-2 transition duration-200">
@@ -33,21 +44,18 @@ function Card(props) {
             <div className="font-bold text-base">{props.price} руб.</div>
           </div>
           <div
-            onClick={props.onClickAdd}
-            className="bg-white p-2 cursor-pointer rounded-md"
+            onClick={handleAdd}
+            className={
+              isAdded
+                ? "bg-custom-green w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
+                : "bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
+            }
           >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.6653 5.13124H7.20212V1.66823C7.20212 0.332869 5.13112 0.332869 5.13112 1.66823V5.13124H1.66799C0.33292 5.13124 0.33292 7.20218 1.66799 7.20218H5.13112V10.6652C5.13112 12.0006 7.20212 12.0006 7.20212 10.6652V7.20218H10.6653C12.0005 7.20218 12.0005 5.13124 10.6653 5.13124Z"
-                fill="#5C5C5C"
-              />
-            </svg>
+            <img
+              src={isAdded ? success : addicon}
+              alt="icon"
+              className="select-none"
+            />
           </div>
         </div>
       </div>
