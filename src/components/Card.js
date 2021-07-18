@@ -5,11 +5,14 @@ import success from "./../assets/icons/success.svg";
 import grayFavicon from "./../assets/icons/gray-favicon.svg";
 import redFavicon from "./../assets/icons/red-favicon.svg";
 
-function Card(props) {
+function Card({title, img, price, onClickAdd}) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFav, setIsFav] = React.useState(false);
 
   const handleAdd = () => {
+    if (!isAdded) {
+      onClickAdd({title, img, price});
+    }
     setIsAdded(!isAdded);
   };
 
@@ -34,14 +37,14 @@ function Card(props) {
         </div>
         <img
           className="w-32 h-28 mx-2 flex-shrink-0 select-none"
-          src={props.img}
-          alt={props.title}
+          src={img}
+          alt={title}
         />
-        <div className="text-sm w-36 mt-2">{props.title}</div>
+        <div className="text-sm w-36 mt-2">{title}</div>
         <div className="flex items-center justify-between mt-2">
           <div>
             <small className="text-gray-400">ЦЕНА:</small>
-            <div className="font-bold text-base">{props.price} руб.</div>
+            <div className="font-bold text-base">{price} руб.</div>
           </div>
           <div
             onClick={handleAdd}

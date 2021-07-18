@@ -8,7 +8,12 @@ import Search from "./components/Search";
 
 function App() {
   const [goods, setGoods] = React.useState([]);
+  const [basketGoods, setBasketGoods] = React.useState([]);
   const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
+
+  const handleAddToBasket = (obj) => {
+    setBasketGoods((prev) => [...prev, obj]);
+  };
 
   React.useEffect(() => {
     fetch("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
@@ -23,6 +28,7 @@ function App() {
       {/* basket */}
       {isVisibleBasket && (
         <Basket
+          basketGoods={basketGoods}
           handleCloseBasket={() => {
             setIsVisibleBasket(false);
           }}
@@ -45,13 +51,13 @@ function App() {
         {/* cards arr */}
         <div className="flex items-center justify-between flex-wrap pr-10">
           {/* card item */}
-          {goods.map((obj, index) => (
+          {goods.map((item, index) => (
             <Card
               key={index}
-              title={obj.title}
-              price={obj.price}
-              img={obj.img}
-              onClickAdd={() => console.log("click add")}
+              title={item.title}
+              price={item.price}
+              img={item.img}
+              onClickAdd={(obj) => handleAddToBasket(obj)}
               onClickFav={() => console.log("click fav")}
             />
           ))}
