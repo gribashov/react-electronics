@@ -9,7 +9,7 @@ function Basket({handleCloseBasket, basketGoods = []}) {
             className="cursor-pointer"
             onClick={handleCloseBasket}
             width="12"
-            height="13"
+            height="12"
             viewBox="0 0 9 10"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +27,7 @@ function Basket({handleCloseBasket, basketGoods = []}) {
             <div className="mx-10 mb-10">
               <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
                 <img
+                  key={obj.title}
                   src={obj.img}
                   alt="product6"
                   className="w-20 flex-shrink-0"
