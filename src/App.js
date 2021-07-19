@@ -18,6 +18,11 @@ function App() {
     setBasketGoods((prev) => [...prev, obj]);
   };
 
+  const handleRemoveFromBasket = (id) => {
+    axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${id}`);
+    setBasketGoods((prev) => prev.filter((product) => product.id !== id));
+  };
+
   const onChangeSearchInput = (evt) => {
     setSearchValue(evt.target.value);
   };
@@ -48,6 +53,7 @@ function App() {
           handleCloseBasket={() => {
             setIsVisibleBasket(false);
           }}
+          onRemove={handleRemoveFromBasket}
         />
       )}
       {/* container */}
