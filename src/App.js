@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import Card from "./components/Card";
 import Header from "./components/Header";
@@ -13,6 +14,7 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
 
   const handleAddToBasket = (obj) => {
+    axios.post("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket", obj);
     setBasketGoods((prev) => [...prev, obj]);
   };
 
@@ -25,11 +27,16 @@ function App() {
   };
 
   React.useEffect(() => {
-    fetch("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
+    axios
+      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
       .then((res) => {
-        return res.json();
-      })
-      .then((json) => setGoods(json));
+        setGoods(res.data);
+      });
+    axios
+      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket")
+      .then((res) => {
+        setBasketGoods(res.data);
+      });
   }, []);
 
   return (
