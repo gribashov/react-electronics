@@ -65,7 +65,9 @@ function App() {
         <div className="flex items-center justify-between flex-wrap pr-10">
           {/* card item */}
           {goods
-            .filter((product) => product.title.includes(searchValue))
+            .filter((product) =>
+              product.title.toLowerCase().includes(searchValue.toLowerCase())
+            )
             .map((item) => (
               <Card
                 key={item.title}
