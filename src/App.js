@@ -10,9 +10,10 @@ import Search from "./components/Search";
 function App() {
   const [goods, setGoods] = React.useState([]);
   const [basketGoods, setBasketGoods] = React.useState([]);
+  const [favoriteGoods, setFavoriteGoods] = React.useState([]);
+
   const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
-  const [favoriteGoods, setFavoriteGoods] = React.useState([]);
 
   const handleAddToBasket = (obj) => {
     console.log(obj);
