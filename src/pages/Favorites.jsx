@@ -14,6 +14,7 @@ function Favorites({favoriteGoods, handleAddToBasket, handleAddToFavorite}) {
             onClickAdd={(obj) => handleAddToBasket(obj)}
             onClickFav={(obj) => handleAddToFavorite(obj)}
             {...item}
+            favorited={true}
           />
         ))}
       </div>
