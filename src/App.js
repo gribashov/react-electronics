@@ -19,19 +19,23 @@ function App() {
 
   const handleAddToBasket = async (obj) => {
     console.log(obj);
-    if (basketGoods.find((item) => Number(item.id) === Number(obj.id))) {
-      axios.delete(
-        `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${obj.id}`
-      );
-      setBasketGoods((prev) =>
-        prev.filter((item) => Number(item.id) !== Number(obj.id))
-      );
-    } else {
-      const {data} = await axios.post(
-        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket",
-        obj
-      );
-      setBasketGoods((prev) => [...prev, data]);
+    try {
+      if (basketGoods.find((item) => Number(item.id) === Number(obj.id))) {
+        axios.delete(
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${obj.id}`
+        );
+        setBasketGoods((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(obj.id))
+        );
+      } else {
+        const {data} = await axios.post(
+          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket",
+          obj
+        );
+        setBasketGoods((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert("Error when add to basket");
     }
   };
 
@@ -46,16 +50,20 @@ function App() {
 
   const handleAddToFavorite = async (obj) => {
     console.log(obj);
-    if (favoriteGoods.find((item) => Number(item.id) === Number(obj.id))) {
-      axios.delete(
-        `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
-      );
-    } else {
-      const {data} = await axios.post(
-        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites",
-        obj
-      );
-      setFavoriteGoods((prev) => [...prev, data]);
+    try {
+      if (favoriteGoods.find((item) => Number(item.id) === Number(obj.id))) {
+        axios.delete(
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
+        );
+      } else {
+        const {data} = await axios.post(
+          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites",
+          obj
+        );
+        setFavoriteGoods((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert("Error when add to favorite");
     }
   };
 
