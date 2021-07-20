@@ -12,6 +12,7 @@ function App() {
   const [basketGoods, setBasketGoods] = React.useState([]);
   const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
+  const [favoriteGoods, setFavoriteGoods] = React.useState([]);
 
   const handleAddToBasket = (obj) => {
     console.log(obj);
@@ -35,6 +36,21 @@ function App() {
 
   const onChangeSearchInput = (evt) => {
     setSearchValue(evt.target.value);
+  };
+
+  const handleAddToFavorite = (obj) => {
+    console.log(obj);
+    if (favoriteGoods.find((item) => Number(item.id) === Number(obj.id))) {
+      axios.delete(
+        `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
+      );
+      setFavoriteGoods((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(obj.id))
+      );
+    } else {
+      axios.post("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites", obj);
+      setFavoriteGoods((prev) => [...prev, obj]);
+    }
   };
 
   const clearInput = () => {
@@ -95,7 +111,7 @@ function App() {
               <Card
                 key={index}
                 onClickAdd={(obj) => handleAddToBasket(obj)}
-                onClickFav={() => console.log("click fav")}
+                onClickFav={(obj) => handleAddToFavorite(obj)}
                 {...item}
               />
             ))}

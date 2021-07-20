@@ -5,7 +5,7 @@ import success from "./../assets/icons/success.svg";
 import grayFavicon from "./../assets/icons/gray-favicon.svg";
 import redFavicon from "./../assets/icons/red-favicon.svg";
 
-function Card({id, title, img, price, onClickAdd}) {
+function Card({id, title, img, price, onClickAdd, onClickFav}) {
   const [isAdded, setIsAdded] = React.useState(false);
   const [isFav, setIsFav] = React.useState(false);
 
@@ -15,6 +15,7 @@ function Card({id, title, img, price, onClickAdd}) {
   };
 
   const handleFav = () => {
+    onClickFav({id, title, img, price});
     setIsFav(!isFav);
   };
 

@@ -1,5 +1,5 @@
 import emptyPng from "./../assets/emptyPng.png";
-import deliveryPng from "./../assets/deliveryPng.png";
+// import deliveryPng from "./../assets/deliveryPng.png";
 
 function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
   return (
