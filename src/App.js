@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "axios";
+import {Route} from "react-router-dom";
 
-import Card from "./components/Card";
 import Header from "./components/Header";
 import Basket from "./components/Basket";
 import Banner from "./components/Banner";
-import Search from "./components/Search";
+import Home from "./pages/Home";
 
 function App() {
   const [goods, setGoods] = React.useState([]);
@@ -96,27 +96,16 @@ function App() {
         {/* banner */}
         <Banner />
         {/* search field */}
-        <Search
-          searchValue={searchValue}
-          onChangeSearchInput={onChangeSearchInput}
-          clearInput={clearInput}
-        />
-        {/* cards arr */}
-        <div className="flex items-center justify-between flex-wrap pr-10">
-          {/* card item */}
-          {goods
-            .filter((product) =>
-              product.title.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((item, index) => (
-              <Card
-                key={index}
-                onClickAdd={(obj) => handleAddToBasket(obj)}
-                onClickFav={(obj) => handleAddToFavorite(obj)}
-                {...item}
-              />
-            ))}
-        </div>
+        <Route path="/" exact>
+          <Home
+            goods={goods}
+            searchValue={searchValue}
+            onChangeSearchInput={onChangeSearchInput}
+            clearInput={clearInput}
+            handleAddToBasket={handleAddToBasket}
+            handleAddToFavorite={handleAddToFavorite}
+          />
+        </Route>
       </div>
     </div>
   );
