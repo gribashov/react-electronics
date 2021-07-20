@@ -29,10 +29,9 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
             <div className="flex-1 overflow-y-scroll md:no-scrollbar mb-10">
               {/* basket card */}
               {basketGoods.map((obj) => (
-                <div className="mx-10 mb-10">
+                <div key={obj.id} className="mx-10 mb-10">
                   <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
                     <img
-                      key={obj.title}
                       src={obj.img}
                       alt="product6"
                       className="w-20 flex-shrink-0"
@@ -106,20 +105,23 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
             </div>
           </div>
         ) : (
-          <div className="h-full py-10">
+          <div className="h-full py-20">
             {/* empty field */}
             <div className="flex justify-center">
-              <img src={emptyPng} alt="empty" className="w-36 " />
+              <img src={emptyPng} alt="empty" className="w-36 custom-bounce" />
             </div>
             <div className="text-base flex justify-center font-semibold">
               Корзина пустая
             </div>
-            <div className="text-xs flex justify-center px-10 opacity-50">
+            <div className="text-xs flex justify-center px-10 opacity-50 text-center">
               Выберите товар и нажмите на кнопку
               <br />
               добавить, чтобы увидеть его здесь
             </div>
-            <div className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-black">
+            <div
+              onClick={handleCloseBasket}
+              className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-black hover:bg-gray-900"
+            >
               <svg
                 width="18"
                 height="14"
@@ -142,7 +144,7 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <a href="/#" className="text-white" onClick={handleCloseBasket}>
+              <a href="/#" className="text-white">
                 Вернуться назад
               </a>
             </div>

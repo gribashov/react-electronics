@@ -14,8 +14,18 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
 
   const handleAddToBasket = (obj) => {
-    axios.post("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket", obj);
-    setBasketGoods((prev) => [...prev, obj]);
+    console.log(obj);
+    if (basketGoods.find((item) => Number(item.id) === Number(obj.id))) {
+      axios.delete(
+        `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${obj.id}`
+      );
+      setBasketGoods((prev) =>
+        prev.filter((item) => Number(item.id) !== Number(obj.id))
+      );
+    } else {
+      axios.post("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket", obj);
+      setBasketGoods((prev) => [...prev, obj]);
+    }
   };
 
   const handleRemoveFromBasket = (id) => {
@@ -81,14 +91,12 @@ function App() {
             .filter((product) =>
               product.title.toLowerCase().includes(searchValue.toLowerCase())
             )
-            .map((item) => (
+            .map((item, index) => (
               <Card
-                key={item.title}
-                title={item.title}
-                price={item.price}
-                img={item.img}
+                key={index}
                 onClickAdd={(obj) => handleAddToBasket(obj)}
                 onClickFav={() => console.log("click fav")}
+                {...item}
               />
             ))}
         </div>
