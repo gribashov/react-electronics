@@ -1,5 +1,6 @@
 import Search from "./../components/Search";
 import Card from "./../components/Card";
+import Banner from "./../components/Banner";
 
 function Home({
   goods,
@@ -11,6 +12,8 @@ function Home({
 }) {
   return (
     <div>
+      {/* banner */}
+      <Banner />
       <Search
         searchValue={searchValue}
         onChangeSearchInput={onChangeSearchInput}

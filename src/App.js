@@ -1,11 +1,14 @@
+// libraries
 import React from "react";
 import axios from "axios";
 import {Route} from "react-router-dom";
-
+// components
 import Header from "./components/Header";
 import Basket from "./components/Basket";
 import Banner from "./components/Banner";
+// pages
 import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const [goods, setGoods] = React.useState([]);
@@ -69,6 +72,11 @@ function App() {
       .then((res) => {
         setBasketGoods(res.data);
       });
+    axios
+      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites")
+      .then((res) => {
+        setFavoriteGoods(res.data);
+      });
   }, []);
 
   return (
@@ -93,8 +101,7 @@ function App() {
         />
         {/* br */}
         <div className="w-full border-b"></div>
-        {/* banner */}
-        <Banner />
+
         {/* search field */}
         <Route path="/" exact>
           <Home
@@ -102,6 +109,14 @@ function App() {
             searchValue={searchValue}
             onChangeSearchInput={onChangeSearchInput}
             clearInput={clearInput}
+            handleAddToBasket={handleAddToBasket}
+            handleAddToFavorite={handleAddToFavorite}
+          />
+        </Route>
+
+        <Route path="/favorites" exact>
+          <Favorites
+            favoriteGoods={favoriteGoods}
             handleAddToBasket={handleAddToBasket}
             handleAddToFavorite={handleAddToFavorite}
           />
