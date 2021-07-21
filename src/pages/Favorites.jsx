@@ -11,8 +11,8 @@ function Favorites({favoriteGoods, handleAddToBasket, handleAddToFavorite}) {
         {favoriteGoods.map((item, index) => (
           <Card
             key={index}
-            onClickAdd={(obj) => handleAddToBasket(obj)}
-            onClickFav={(obj) => handleAddToFavorite(obj)}
+            onAdd={(obj) => handleAddToBasket(obj)}
+            onFav={(obj) => handleAddToFavorite(obj)}
             {...item}
             favorited={true}
           />

@@ -4,6 +4,7 @@ import Banner from "./../components/Banner";
 
 function Home({
   goods,
+  basketGoods,
   searchValue,
   onChangeSearchInput,
   clearInput,
@@ -22,16 +23,20 @@ function Home({
       {/* cards arr */}
       <div className="flex items-center justify-between flex-wrap pr-10">
         {/* card item */}
+
         {goods
-          .filter((product) =>
-            product.title.toLowerCase().includes(searchValue.toLowerCase())
+          .filter((item) =>
+            item.title.toLowerCase().includes(searchValue.toLowerCase())
           )
           .map((item, index) => (
             <Card
               key={index}
-              onClickAdd={(obj) => handleAddToBasket(obj)}
-              onClickFav={(obj) => handleAddToFavorite(obj)}
+              onAdd={(obj) => handleAddToBasket(obj)}
+              onFav={(obj) => handleAddToFavorite(obj)}
               {...item}
+              added={basketGoods.some(
+                (obj) => Number(obj.id) === Number(item.id)
+              )}
             />
           ))}
       </div>

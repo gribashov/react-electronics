@@ -17,6 +17,25 @@ function App() {
   const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
+  React.useEffect(() => {
+    async function fetchData() {
+      const basketGoodsResponse = await axios.get(
+        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket"
+      );
+      const favoriteGoodsResponse = await axios.get(
+        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites"
+      );
+      const goodsResponse = await axios.get(
+        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods"
+      );
+
+      setBasketGoods(basketGoodsResponse.data);
+      setFavoriteGoods(favoriteGoodsResponse.data);
+      setGoods(goodsResponse.data);
+    }
+    fetchData();
+  }, []);
+
   const handleAddToBasket = async (obj) => {
     console.log(obj);
     try {
@@ -39,15 +58,6 @@ function App() {
     }
   };
 
-  const handleRemoveFromBasket = (id) => {
-    axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${id}`);
-    setBasketGoods((prev) => prev.filter((product) => product.id !== id));
-  };
-
-  const onChangeSearchInput = (evt) => {
-    setSearchValue(evt.target.value);
-  };
-
   const handleAddToFavorite = async (obj) => {
     console.log(obj);
     try {
@@ -67,27 +77,18 @@ function App() {
     }
   };
 
+  const handleRemoveFromBasket = (id) => {
+    axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${id}`);
+    setBasketGoods((prev) => prev.filter((product) => product.id !== id));
+  };
+
+  const onChangeSearchInput = (evt) => {
+    setSearchValue(evt.target.value);
+  };
+
   const clearInput = () => {
     setSearchValue("");
   };
-
-  React.useEffect(() => {
-    axios
-      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods")
-      .then((res) => {
-        setGoods(res.data);
-      });
-    axios
-      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket")
-      .then((res) => {
-        setBasketGoods(res.data);
-      });
-    axios
-      .get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites")
-      .then((res) => {
-        setFavoriteGoods(res.data);
-      });
-  }, []);
 
   return (
     <div className="App">
@@ -116,6 +117,7 @@ function App() {
         <Route path="/" exact>
           <Home
             goods={goods}
+            basketGoods={basketGoods}
             searchValue={searchValue}
             onChangeSearchInput={onChangeSearchInput}
             clearInput={clearInput}

@@ -10,20 +10,21 @@ function Card({
   title,
   img,
   price,
-  onClickAdd,
-  onClickFav,
+  onFav,
+  onAdd,
   favorited = false,
+  added = false,
 }) {
-  const [isAdded, setIsAdded] = React.useState(false);
+  const [isAdded, setIsAdded] = React.useState(added);
   const [isFav, setIsFav] = React.useState(favorited);
 
-  const handleAdd = () => {
-    onClickAdd({id, title, img, price});
+  const onClickAdd = () => {
+    onAdd({id, title, img, price});
     setIsAdded(!isAdded);
   };
 
-  const handleFav = () => {
-    onClickFav({id, title, img, price});
+  const onClickFavorite = () => {
+    onFav({id, title, img, price});
     setIsFav(!isFav);
   };
 
@@ -32,7 +33,7 @@ function Card({
       <div className="bg-card-gray px-8 py-4 rounded-2xl w-52 h-64 relative hover:shadow-md transform hover:-translate-y-2 transition duration-200">
         <div className="absolute">
           <div
-            onClick={handleFav}
+            onClick={onClickFavorite}
             className="bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
           >
             <img
@@ -54,7 +55,7 @@ function Card({
             <div className="font-bold text-base">{price} руб.</div>
           </div>
           <div
-            onClick={handleAdd}
+            onClick={onClickAdd}
             className={
               isAdded
                 ? "bg-custom-green w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
