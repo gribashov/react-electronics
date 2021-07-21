@@ -16,6 +16,7 @@ function App() {
 
   const [isVisibleCart, setIsVisibleCart] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
+  const [isLoadingPage, setIsLoadingPage] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -28,6 +29,7 @@ function App() {
       const productsResponse = await axios.get(
         "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/products"
       );
+      setIsLoadingPage(false);
 
       setCartProducts(cartProductsResponse.data);
       setFavoriteProducts(favoriteProductsResponse.data);
@@ -123,6 +125,7 @@ function App() {
             clearInput={clearInput}
             handleAddToCart={handleAddToCart}
             handleAddToFavorite={handleAddToFavorite}
+            isLoadingPage={isLoadingPage}
           />
         </Route>
 

@@ -10,7 +10,25 @@ function Home({
   clearInput,
   handleAddToCart,
   handleAddToFavorite,
+  isLoadingPage,
 }) {
+  const renderProducts = () => {
+    const filtredProducts = products.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (isLoadingPage ? [...Array(12)] : filtredProducts).map(
+      (item, index) => (
+        <Card
+          key={index}
+          onAdd={(obj) => handleAddToCart(obj)}
+          onFav={(obj) => handleAddToFavorite(obj)}
+          {...item}
+          added={cartProducts.some((obj) => Number(obj.id) === Number(item.id))}
+          loading={isLoadingPage}
+        />
+      )
+    );
+  };
   return (
     <div>
       {/* banner */}
@@ -24,21 +42,7 @@ function Home({
       <div className="flex items-center justify-between flex-wrap pr-10">
         {/* card item */}
 
-        {products
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item, index) => (
-            <Card
-              key={index}
-              onAdd={(obj) => handleAddToCart(obj)}
-              onFav={(obj) => handleAddToFavorite(obj)}
-              {...item}
-              added={cartProducts.some(
-                (obj) => Number(obj.id) === Number(item.id)
-              )}
-            />
-          ))}
+        {renderProducts()}
       </div>
     </div>
   );

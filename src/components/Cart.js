@@ -24,7 +24,7 @@ function Cart({handleCloseCart, cartProducts = [], onRemove}) {
           </svg>
         </div>
         {cartProducts.length ? (
-          <div>
+          <>
             {/* cart arr */}
             <div className="flex-1 overflow-y-scroll md:no-scrollbar mb-10">
               {/* cart card */}
@@ -103,7 +103,7 @@ function Cart({handleCloseCart, cartProducts = [], onRemove}) {
                 </svg>
               </div>
             </div>
-          </div>
+          </>
         ) : (
           <div className="h-full py-20">
             {/* empty field */}
