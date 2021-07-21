@@ -35,7 +35,7 @@ function Header(props) {
       </Link>
       {/* right side */}
       <div className="flex items-center justify-center cursor-pointer">
-        <div onClick={props.handleOpenBasket} className="flex items-center">
+        <div onClick={props.handleOpenCart} className="flex items-center">
           <svg
             width="18"
             height="20"

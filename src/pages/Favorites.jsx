@@ -1,6 +1,6 @@
 import Card from "./../components/Card";
 
-function Favorites({favoriteGoods, handleAddToBasket, handleAddToFavorite}) {
+function Favorites({favoriteProducts, handleAddToCart, handleAddToFavorite}) {
   return (
     <div className="my-10">
       <div className="font-bold text-3xl pr-2 truncate mx-10 ">
@@ -8,10 +8,10 @@ function Favorites({favoriteGoods, handleAddToBasket, handleAddToFavorite}) {
       </div>
       {/* cards arr */}
       <div className="flex items-center flex-wrap py-10">
-        {favoriteGoods.map((item, index) => (
+        {favoriteProducts.map((item, index) => (
           <Card
             key={index}
-            onAdd={(obj) => handleAddToBasket(obj)}
+            onAdd={(obj) => handleAddToCart(obj)}
             onFav={(obj) => handleAddToFavorite(obj)}
             {...item}
             favorited={true}

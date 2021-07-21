@@ -4,64 +4,64 @@ import axios from "axios";
 import {Route} from "react-router-dom";
 // components
 import Header from "./components/Header";
-import Basket from "./components/Basket";
+import Cart from "./components/Cart";
 // pages
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 
 function App() {
-  const [goods, setGoods] = React.useState([]);
-  const [basketGoods, setBasketGoods] = React.useState([]);
-  const [favoriteGoods, setFavoriteGoods] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
+  const [cartProducts, setCartProducts] = React.useState([]);
+  const [favoriteProducts, setFavoriteProducts] = React.useState([]);
 
-  const [isVisibleBasket, setIsVisibleBasket] = React.useState(false);
+  const [isVisibleCart, setIsVisibleCart] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
     async function fetchData() {
-      const basketGoodsResponse = await axios.get(
-        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket"
+      const cartProductsResponse = await axios.get(
+        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart"
       );
-      const favoriteGoodsResponse = await axios.get(
+      const favoriteProductsResponse = await axios.get(
         "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites"
       );
-      const goodsResponse = await axios.get(
-        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/goods"
+      const productsResponse = await axios.get(
+        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/products"
       );
 
-      setBasketGoods(basketGoodsResponse.data);
-      setFavoriteGoods(favoriteGoodsResponse.data);
-      setGoods(goodsResponse.data);
+      setCartProducts(cartProductsResponse.data);
+      setFavoriteProducts(favoriteProductsResponse.data);
+      setProducts(productsResponse.data);
     }
     fetchData();
   }, []);
 
-  const handleAddToBasket = async (obj) => {
+  const handleAddToCart = async (obj) => {
     console.log(obj);
     try {
-      if (basketGoods.find((item) => Number(item.id) === Number(obj.id))) {
+      if (cartProducts.find((item) => Number(item.id) === Number(obj.id))) {
         axios.delete(
-          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${obj.id}`
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${obj.id}`
         );
-        setBasketGoods((prev) =>
+        setCartProducts((prev) =>
           prev.filter((item) => Number(item.id) !== Number(obj.id))
         );
       } else {
         const {data} = await axios.post(
-          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket",
+          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart",
           obj
         );
-        setBasketGoods((prev) => [...prev, data]);
+        setCartProducts((prev) => [...prev, data]);
       }
     } catch (error) {
-      alert("Error when add to basket");
+      alert("Error when add to cart");
     }
   };
 
   const handleAddToFavorite = async (obj) => {
     console.log(obj);
     try {
-      if (favoriteGoods.find((item) => Number(item.id) === Number(obj.id))) {
+      if (favoriteProducts.find((item) => Number(item.id) === Number(obj.id))) {
         axios.delete(
           `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
         );
@@ -70,16 +70,16 @@ function App() {
           "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites",
           obj
         );
-        setFavoriteGoods((prev) => [...prev, data]);
+        setFavoriteProducts((prev) => [...prev, data]);
       }
     } catch (error) {
       alert("Error when add to favorite");
     }
   };
 
-  const handleRemoveFromBasket = (id) => {
-    axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/basket/${id}`);
-    setBasketGoods((prev) => prev.filter((product) => product.id !== id));
+  const handleRemoveFromCart = (id) => {
+    axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${id}`);
+    setCartProducts((prev) => prev.filter((product) => product.id !== id));
   };
 
   const onChangeSearchInput = (evt) => {
@@ -92,22 +92,22 @@ function App() {
 
   return (
     <div className="App">
-      {/* basket */}
-      {isVisibleBasket && (
-        <Basket
-          basketGoods={basketGoods}
-          handleCloseBasket={() => {
-            setIsVisibleBasket(false);
+      {/* cart */}
+      {isVisibleCart && (
+        <Cart
+          cartProducts={cartProducts}
+          handleCloseCart={() => {
+            setIsVisibleCart(false);
           }}
-          onRemove={handleRemoveFromBasket}
+          onRemove={handleRemoveFromCart}
         />
       )}
       {/* container */}
       <div className="wrapper mx-auto relative">
         {/* header */}
         <Header
-          handleOpenBasket={() => {
-            setIsVisibleBasket(true);
+          handleOpenCart={() => {
+            setIsVisibleCart(true);
           }}
         />
         {/* br */}
@@ -116,20 +116,20 @@ function App() {
         {/* search field */}
         <Route path="/" exact>
           <Home
-            goods={goods}
-            basketGoods={basketGoods}
+            products={products}
+            cartProducts={cartProducts}
             searchValue={searchValue}
             onChangeSearchInput={onChangeSearchInput}
             clearInput={clearInput}
-            handleAddToBasket={handleAddToBasket}
+            handleAddToCart={handleAddToCart}
             handleAddToFavorite={handleAddToFavorite}
           />
         </Route>
 
         <Route path="/favorites" exact>
           <Favorites
-            favoriteGoods={favoriteGoods}
-            handleAddToBasket={handleAddToBasket}
+            favoriteProducts={favoriteProducts}
+            handleAddToCart={handleAddToCart}
             handleAddToFavorite={handleAddToFavorite}
           />
         </Route>

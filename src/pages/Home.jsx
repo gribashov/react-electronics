@@ -3,12 +3,12 @@ import Card from "./../components/Card";
 import Banner from "./../components/Banner";
 
 function Home({
-  goods,
-  basketGoods,
+  products,
+  cartProducts,
   searchValue,
   onChangeSearchInput,
   clearInput,
-  handleAddToBasket,
+  handleAddToCart,
   handleAddToFavorite,
 }) {
   return (
@@ -24,17 +24,17 @@ function Home({
       <div className="flex items-center justify-between flex-wrap pr-10">
         {/* card item */}
 
-        {goods
+        {products
           .filter((item) =>
             item.title.toLowerCase().includes(searchValue.toLowerCase())
           )
           .map((item, index) => (
             <Card
               key={index}
-              onAdd={(obj) => handleAddToBasket(obj)}
+              onAdd={(obj) => handleAddToCart(obj)}
               onFav={(obj) => handleAddToFavorite(obj)}
               {...item}
-              added={basketGoods.some(
+              added={cartProducts.some(
                 (obj) => Number(obj.id) === Number(item.id)
               )}
             />

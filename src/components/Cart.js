@@ -1,16 +1,16 @@
 import emptyPng from "./../assets/emptyPng.png";
 // import deliveryPng from "./../assets/deliveryPng.png";
 
-function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
+function Cart({handleCloseCart, cartProducts = [], onRemove}) {
   return (
     <div className="overlay fixed left-0 top-0 mx-auto">
-      {/* basket */}
-      <div className="basket fixed right-0 flex flex-col">
+      {/* cart */}
+      <div className="cart fixed right-0 flex flex-col">
         <div className="flex items-center justify-between p-10">
           <div className="text-2xl font-bold">Корзина</div>
           <svg
             className="cursor-pointer"
-            onClick={handleCloseBasket}
+            onClick={handleCloseCart}
             width="12"
             height="12"
             viewBox="0 0 9 10"
@@ -23,12 +23,12 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
             />
           </svg>
         </div>
-        {basketGoods.length ? (
+        {cartProducts.length ? (
           <div>
-            {/* basket arr */}
+            {/* cart arr */}
             <div className="flex-1 overflow-y-scroll md:no-scrollbar mb-10">
-              {/* basket card */}
-              {basketGoods.map((obj) => (
+              {/* cart card */}
+              {cartProducts.map((obj) => (
                 <div key={obj.id} className="mx-10 mb-10">
                   <div className="flex items-center justify-between w-80 px-4 h-28 bg-custom-gray rounded-lg">
                     <img
@@ -119,7 +119,7 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
               добавить, чтобы увидеть его здесь
             </div>
             <div
-              onClick={handleCloseBasket}
+              onClick={handleCloseCart}
               className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-black hover:bg-gray-900"
             >
               <svg
@@ -155,4 +155,4 @@ function Basket({handleCloseBasket, basketGoods = [], onRemove}) {
   );
 }
 
-export default Basket;
+export default Cart;
