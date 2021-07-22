@@ -94,8 +94,14 @@ function App() {
     setSearchValue("");
   };
 
+  const productHasBeenAdded = (id) => {
+    return cartProducts.some((obj) => Number(obj.id) === Number(id));
+  };
+
   return (
-    <AppContext.Provider value={{products, cartProducts, favoriteProducts}}>
+    <AppContext.Provider
+      value={{products, cartProducts, favoriteProducts, productHasBeenAdded}}
+    >
       <div className="App">
         {/* cart */}
         {isVisibleCart && (

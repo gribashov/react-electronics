@@ -13,7 +13,7 @@ function Home({
   handleAddToFavorite,
   isLoadingPage,
 }) {
-  const {products, cartProducts} = React.useContext(AppContext);
+  const {products} = React.useContext(AppContext);
   const renderProducts = () => {
     const filtredProducts = products.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -25,7 +25,6 @@ function Home({
           onAdd={(obj) => handleAddToCart(obj)}
           onFav={(obj) => handleAddToFavorite(obj)}
           {...item}
-          added={cartProducts.some((obj) => Number(obj.id) === Number(item.id))}
           loading={isLoadingPage}
         />
       )

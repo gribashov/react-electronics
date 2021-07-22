@@ -6,6 +6,8 @@ import success from "./../assets/icons/success.svg";
 import grayFavicon from "./../assets/icons/gray-favicon.svg";
 import redFavicon from "./../assets/icons/red-favicon.svg";
 
+import {AppContext} from "../App";
+
 function Card({
   id,
   title,
@@ -14,15 +16,15 @@ function Card({
   onFav,
   onAdd,
   favorited = false,
-  added = false,
   loading = false,
 }) {
-  const [isAdded, setIsAdded] = React.useState(added);
   const [isFav, setIsFav] = React.useState(favorited);
+
+  const {productHasBeenAdded} = React.useContext(AppContext);
+  console.log("title", productHasBeenAdded(id));
 
   const onClickAdd = () => {
     onAdd({id, title, img, price});
-    setIsAdded(!isAdded);
   };
 
   const onClickFavorite = () => {
@@ -76,13 +78,13 @@ function Card({
               <div
                 onClick={onClickAdd}
                 className={
-                  isAdded
+                  productHasBeenAdded(id)
                     ? "bg-custom-green w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
                     : "bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
                 }
               >
                 <img
-                  src={isAdded ? success : addicon}
+                  src={productHasBeenAdded(id) ? success : addicon}
                   alt="icon"
                   className="select-none"
                 />
