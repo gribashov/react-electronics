@@ -1,6 +1,11 @@
-import Card from "./../components/Card";
+import React from "react";
 
-function Favorites({favoriteProducts, handleAddToCart, handleAddToFavorite}) {
+import Card from "./../components/Card";
+import {AppContext} from "../App";
+
+function Favorites({handleAddToFavorite}) {
+  const {favoriteProducts} = React.useContext(AppContext);
+
   return (
     <div className="my-10">
       <div className="font-bold text-3xl pr-2 truncate mx-10 ">
@@ -11,7 +16,6 @@ function Favorites({favoriteProducts, handleAddToCart, handleAddToFavorite}) {
         {favoriteProducts.map((item, index) => (
           <Card
             key={index}
-            onAdd={(obj) => handleAddToCart(obj)}
             onFav={(obj) => handleAddToFavorite(obj)}
             {...item}
             favorited={true}

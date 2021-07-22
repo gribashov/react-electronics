@@ -1,10 +1,11 @@
+import React from "react";
+
 import Search from "./../components/Search";
 import Card from "./../components/Card";
 import Banner from "./../components/Banner";
+import {AppContext} from "../App";
 
 function Home({
-  products,
-  cartProducts,
   searchValue,
   onChangeSearchInput,
   clearInput,
@@ -12,6 +13,7 @@ function Home({
   handleAddToFavorite,
   isLoadingPage,
 }) {
+  const {products, cartProducts} = React.useContext(AppContext);
   const renderProducts = () => {
     const filtredProducts = products.filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())

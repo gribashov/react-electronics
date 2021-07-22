@@ -9,6 +9,8 @@ import Cart from "./components/Cart";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 
+export const AppContext = React.createContext({});
+
 function App() {
   const [products, setProducts] = React.useState([]);
   const [cartProducts, setCartProducts] = React.useState([]);
@@ -93,51 +95,50 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {/* cart */}
-      {isVisibleCart && (
-        <Cart
-          cartProducts={cartProducts}
-          handleCloseCart={() => {
-            setIsVisibleCart(false);
-          }}
-          onRemove={handleRemoveFromCart}
-        />
-      )}
-      {/* container */}
-      <div className="wrapper mx-auto relative">
-        {/* header */}
-        <Header
-          handleOpenCart={() => {
-            setIsVisibleCart(true);
-          }}
-        />
-        {/* br */}
-        <div className="w-full border-b"></div>
-
-        {/* search field */}
-        <Route path="/" exact>
-          <Home
-            products={products}
+    <AppContext.Provider value={{products, cartProducts, favoriteProducts}}>
+      <div className="App">
+        {/* cart */}
+        {isVisibleCart && (
+          <Cart
             cartProducts={cartProducts}
-            searchValue={searchValue}
-            onChangeSearchInput={onChangeSearchInput}
-            clearInput={clearInput}
-            handleAddToCart={handleAddToCart}
-            handleAddToFavorite={handleAddToFavorite}
-            isLoadingPage={isLoadingPage}
+            handleCloseCart={() => {
+              setIsVisibleCart(false);
+            }}
+            onRemove={handleRemoveFromCart}
           />
-        </Route>
+        )}
+        {/* container */}
+        <div className="wrapper mx-auto relative">
+          {/* header */}
+          <Header
+            handleOpenCart={() => {
+              setIsVisibleCart(true);
+            }}
+          />
+          {/* br */}
+          <div className="w-full border-b"></div>
 
-        <Route path="/favorites" exact>
-          <Favorites
-            favoriteProducts={favoriteProducts}
-            handleAddToCart={handleAddToCart}
-            handleAddToFavorite={handleAddToFavorite}
-          />
-        </Route>
+          {/* search field */}
+          <Route path="/" exact>
+            <Home
+              searchValue={searchValue}
+              onChangeSearchInput={onChangeSearchInput}
+              clearInput={clearInput}
+              handleAddToCart={handleAddToCart}
+              handleAddToFavorite={handleAddToFavorite}
+              isLoadingPage={isLoadingPage}
+            />
+          </Route>
+
+          <Route path="/favorites" exact>
+            <Favorites
+              handleAddToCart={handleAddToCart}
+              handleAddToFavorite={handleAddToFavorite}
+            />
+          </Route>
+        </div>
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 
