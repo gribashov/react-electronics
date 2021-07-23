@@ -1,7 +1,38 @@
-import emptyPng from "./../assets/emptyPng.png";
-// import deliveryPng from "./../assets/deliveryPng.png";
+import React from "react";
+import {AppContext} from "../App";
+import axios from "axios";
 
-function Cart({handleCloseCart, cartProducts = [], onRemove}) {
+import Info from "./Info";
+import deliveryPng from "./../assets/deliveryPng.png";
+import emptyPng from "./../assets/emptyPng.png";
+
+function Cart({onRemove}) {
+  const {handleCloseCart, cartProducts, setCartProducts} =
+    React.useContext(AppContext);
+  const [isOrderSend, setIsOrderSend] = React.useState(false);
+  const [orderID, setOrderID] = React.useState(null);
+
+  const sendOrder = async () => {
+    try {
+      const {data} = await axios.post(
+        `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/orders/`,
+        {products: cartProducts}
+      );
+      setIsOrderSend(true);
+      setOrderID(data.id);
+      setCartProducts([]);
+      for (let i = 0; i < cartProducts.length; i++) {
+        const product = cartProducts[i];
+        await setTimeout(function () {
+          axios.delete(
+            `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${product.id}`
+          );
+        }, 1000);
+      }
+    } catch (error) {
+      alert("error");
+    }
+  };
   return (
     <div className="overlay fixed left-0 top-0 mx-auto">
       {/* cart */}
@@ -75,7 +106,10 @@ function Cart({handleCloseCart, cartProducts = [], onRemove}) {
                 <div></div>
                 <li className="font-bold">1 806 руб.</li>
               </ul>
-              <div className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-custom-green">
+              <div
+                onClick={sendOrder}
+                className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-custom-green"
+              >
                 <a href="/#" className="text-white">
                   Оформить заказ
                 </a>
@@ -105,50 +139,15 @@ function Cart({handleCloseCart, cartProducts = [], onRemove}) {
             </div>
           </>
         ) : (
-          <div className="h-full py-20">
-            {/* empty field */}
-            <div className="flex justify-center">
-              <img src={emptyPng} alt="empty" className="w-36 custom-bounce" />
-            </div>
-            <div className="text-base flex justify-center font-semibold">
-              Корзина пустая
-            </div>
-            <div className="text-xs flex justify-center px-10 opacity-50 text-center">
-              Выберите товар и нажмите на кнопку
-              <br />
-              добавить, чтобы увидеть его здесь
-            </div>
-            <div
-              onClick={handleCloseCart}
-              className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-black hover:bg-gray-900"
-            >
-              <svg
-                width="18"
-                height="14"
-                viewBox="0 0 18 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.6619 7L1.26337 7"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M8.00024 13L1.2634 7L8.00025 1"
-                  stroke="white"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <a href="/#" className="text-white">
-                Вернуться назад
-              </a>
-            </div>
-          </div>
+          <Info
+            title={isOrderSend ? "Заказ оформлен!" : "Корзина пустая"}
+            image={isOrderSend ? deliveryPng : emptyPng}
+            description={
+              isOrderSend
+                ? `Ваш заказ #${orderID} скоро будет передан курьерской доставке`
+                : "Выберите товар и нажмите на кнопку добавить, чтобы увидеть его здесь"
+            }
+          />
         )}
       </div>
     </div>

@@ -69,6 +69,9 @@ function App() {
         axios.delete(
           `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
         );
+        setFavoriteProducts((prev) =>
+          prev.filter((item) => Number(item.id) !== Number(obj.id))
+        );
       } else {
         const {data} = await axios.post(
           "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites",
@@ -98,20 +101,25 @@ function App() {
     return cartProducts.some((obj) => Number(obj.id) === Number(id));
   };
 
+  const handleCloseCart = () => {
+    setIsVisibleCart(false);
+  };
+
   return (
     <AppContext.Provider
-      value={{products, cartProducts, favoriteProducts, productHasBeenAdded}}
+      value={{
+        products,
+        cartProducts,
+        setCartProducts,
+        favoriteProducts,
+        productHasBeenAdded,
+        handleCloseCart,
+      }}
     >
       <div className="App">
         {/* cart */}
         {isVisibleCart && (
-          <Cart
-            cartProducts={cartProducts}
-            handleCloseCart={() => {
-              setIsVisibleCart(false);
-            }}
-            onRemove={handleRemoveFromCart}
-          />
+          <Cart cartProducts={cartProducts} onRemove={handleRemoveFromCart} />
         )}
         {/* container */}
         <div className="wrapper mx-auto relative">
