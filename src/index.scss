@@ -63,6 +63,23 @@ code {
     }
   }
 
+  .custom-disabled {
+    &:disabled {
+      animation: disabled 1s ease-in-out infinite;
+      background-color: #bebebe;
+      cursor: default;
+    }
+
+    @keyframes disabled {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+  }
+
   .custom-bounce {
     animation: bounce 2s infinite;
 

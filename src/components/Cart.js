@@ -11,9 +11,11 @@ function Cart({onRemove}) {
     React.useContext(AppContext);
   const [isOrderSend, setIsOrderSend] = React.useState(false);
   const [orderID, setOrderID] = React.useState(null);
+  const [isLoadingOrder, setIsLoadingOrder] = React.useState(false);
 
   const sendOrder = async () => {
     try {
+      setIsLoadingOrder(true);
       const {data} = await axios.post(
         `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/orders/`,
         {products: cartProducts}
@@ -32,6 +34,7 @@ function Cart({onRemove}) {
     } catch (error) {
       alert("error");
     }
+    setIsLoadingOrder(false);
   };
   return (
     <div className="overlay fixed left-0 top-0 mx-auto">
@@ -106,14 +109,14 @@ function Cart({onRemove}) {
                 <div></div>
                 <li className="font-bold">1 806 руб.</li>
               </ul>
-              <div
+              <button
+                disabled={isLoadingOrder}
                 onClick={sendOrder}
-                className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-custom-green"
+                className="custom-disabled cursor-pointer mt-10 mx-10 w-80 py-4 flex items-center justify-center rounded-2xl bg-custom-green text-white"
               >
-                <a href="/#" className="text-white">
-                  Оформить заказ
-                </a>
+                Оформить заказ
                 <svg
+                  className="ml-2"
                   width="17"
                   height="14"
                   viewBox="0 0 17 14"
@@ -135,7 +138,7 @@ function Cart({onRemove}) {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
+              </button>
             </div>
           </>
         ) : (
