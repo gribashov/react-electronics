@@ -13,6 +13,10 @@ function Cart({onRemove}) {
   const [orderID, setOrderID] = React.useState(null);
   const [isLoadingOrder, setIsLoadingOrder] = React.useState(false);
 
+  console.log(cartProducts);
+
+  const totalPrice = cartProducts.reduce((acc, obj) => acc + obj.price, 0);
+
   const sendOrder = async () => {
     try {
       setIsLoadingOrder(true);
@@ -102,7 +106,7 @@ function Cart({onRemove}) {
               <ul className="dashedDiv flex items-end justify-between mx-10 mb-4">
                 <li>Итого:</li>
                 <div></div>
-                <li className="font-bold">36 120 руб.</li>
+                <li className="font-bold">{totalPrice} руб.</li>
               </ul>
               <ul className="dashedDiv flex items-end justify-between mx-10 mb-4">
                 <li>Налог 5%:</li>

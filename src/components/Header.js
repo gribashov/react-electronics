@@ -1,6 +1,11 @@
 import {Link} from "react-router-dom";
+import React from "react";
+import {AppContext} from "../App";
 
 function Header(props) {
+  const {cartProducts} = React.useContext(AppContext);
+
+  const totalPrice = cartProducts.reduce((acc, obj) => acc + obj.price, 0);
   return (
     <div className="flex items-center justify-between p-10">
       {/* left side */}
@@ -65,7 +70,9 @@ function Header(props) {
               strokeLinejoin="round"
             />
           </svg>
-          <div className="ml-2 text-gray-500 font-semibold">11000 руб.</div>
+          <div className="ml-2 text-gray-500 font-semibold">
+            {totalPrice} руб.
+          </div>
         </div>
 
         <Link to="/favorites" className="ml-6">
