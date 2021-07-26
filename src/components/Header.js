@@ -1,11 +1,10 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import {AppContext} from "../App";
+
+import {useCart} from "../hooks/useCart";
 
 function Header(props) {
-  const {cartProducts} = React.useContext(AppContext);
-
-  const totalPrice = cartProducts.reduce((acc, obj) => acc + obj.price, 0);
+  const {totalPrice} = useCart();
   return (
     <div className="flex items-center justify-between p-10">
       {/* left side */}

@@ -4,20 +4,21 @@ import {AppContext} from "../App";
 const Info = ({title, image, description}) => {
   const {handleCloseCart} = React.useContext(AppContext);
   return (
-    <div className="h-full py-20">
+    <div className="mx-10 w-64">
       {/* empty field */}
       <div className="flex justify-center">
         <img src={image} alt="empty" className="w-36 custom-bounce" />
       </div>
       <div className="text-base flex justify-center font-semibold">{title}</div>
-      <div className="text-xs flex justify-center px-10 opacity-50 text-center">
+      <div className="text-xs flex justify-center opacity-50 text-center">
         {description}
       </div>
       <div
         onClick={handleCloseCart}
-        className="cursor-pointer mt-10 mx-10 px-20 py-4 flex items-center justify-between rounded-2xl bg-black hover:bg-gray-900"
+        className="cursor-pointer mt-10 w-full py-4 flex items-center justify-center rounded-2xl bg-black hover:bg-gray-900"
       >
         <svg
+          className="mr-2"
           width="18"
           height="14"
           viewBox="0 0 18 14"
@@ -27,16 +28,16 @@ const Info = ({title, image, description}) => {
           <path
             d="M16.6619 7L1.26337 7"
             stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             d="M8.00024 13L1.2634 7L8.00025 1"
             stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
         <a href="/#" className="text-white">

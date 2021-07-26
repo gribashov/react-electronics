@@ -5,17 +5,15 @@ import axios from "axios";
 import Info from "./Info";
 import deliveryPng from "./../assets/deliveryPng.png";
 import emptyPng from "./../assets/emptyPng.png";
+import {useCart} from "../hooks/useCart";
 
 function Cart({onRemove}) {
-  const {handleCloseCart, cartProducts, setCartProducts} =
-    React.useContext(AppContext);
+  const {handleCloseCart} = React.useContext(AppContext);
   const [isOrderSend, setIsOrderSend] = React.useState(false);
   const [orderID, setOrderID] = React.useState(null);
   const [isLoadingOrder, setIsLoadingOrder] = React.useState(false);
 
-  console.log(cartProducts);
-
-  const totalPrice = cartProducts.reduce((acc, obj) => acc + obj.price, 0);
+  const {cartProducts, setCartProducts, totalPrice} = useCart();
 
   const sendOrder = async () => {
     try {
@@ -44,7 +42,7 @@ function Cart({onRemove}) {
     <div className="overlay fixed left-0 top-0 mx-auto">
       {/* cart */}
       <div className="cart fixed right-0 flex flex-col">
-        <div className="flex items-center justify-between p-10">
+        <div className="flex items-center justify-between mx-10 my-10">
           <div className="text-2xl font-bold">Корзина</div>
           <svg
             className="cursor-pointer"
@@ -111,7 +109,9 @@ function Cart({onRemove}) {
               <ul className="dashedDiv flex items-end justify-between mx-10 mb-4">
                 <li>Налог 5%:</li>
                 <div></div>
-                <li className="font-bold">1 806 руб.</li>
+                <li className="font-bold">
+                  {Math.round((totalPrice / 100) * 5)} руб.
+                </li>
               </ul>
               <button
                 disabled={isLoadingOrder}
@@ -146,15 +146,17 @@ function Cart({onRemove}) {
             </div>
           </>
         ) : (
-          <Info
-            title={isOrderSend ? "Заказ оформлен!" : "Корзина пустая"}
-            image={isOrderSend ? deliveryPng : emptyPng}
-            description={
-              isOrderSend
-                ? `Ваш заказ #${orderID} скоро будет передан курьерской доставке`
-                : "Выберите товар и нажмите на кнопку добавить, чтобы увидеть его здесь"
-            }
-          />
+          <div className="flex items-center justify-center h-full">
+            <Info
+              title={isOrderSend ? "Заказ оформлен!" : "Корзина пустая"}
+              image={isOrderSend ? deliveryPng : emptyPng}
+              description={
+                isOrderSend
+                  ? `Ваш заказ #${orderID} скоро будет передан курьерской доставке`
+                  : "Выберите товар и нажмите на кнопку добавить, чтобы увидеть его здесь"
+              }
+            />
+          </div>
         )}
       </div>
     </div>
