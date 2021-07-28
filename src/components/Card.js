@@ -17,11 +17,11 @@ function Card({
   onAdd,
   favorited = false,
   loading = false,
+  products,
 }) {
   const [isFav, setIsFav] = React.useState(favorited);
 
   const {productHasBeenAdded} = React.useContext(AppContext);
-  console.log("title", productHasBeenAdded(id));
 
   const onClickAdd = () => {
     onAdd({id, title, img, price});

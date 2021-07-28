@@ -8,6 +8,7 @@ import Cart from "./components/Cart";
 // pages
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 
 export const AppContext = React.createContext({});
 
@@ -41,7 +42,6 @@ function App() {
   }, []);
 
   const handleAddToCart = async (obj) => {
-    console.log(obj);
     try {
       if (cartProducts.find((item) => Number(item.id) === Number(obj.id))) {
         axios.delete(
@@ -63,7 +63,6 @@ function App() {
   };
 
   const handleAddToFavorite = async (obj) => {
-    console.log(obj);
     try {
       if (favoriteProducts.find((item) => Number(item.id) === Number(obj.id))) {
         axios.delete(
@@ -149,6 +148,9 @@ function App() {
               handleAddToCart={handleAddToCart}
               handleAddToFavorite={handleAddToFavorite}
             />
+          </Route>
+          <Route path="/orders" exact>
+            <Orders />
           </Route>
         </div>
       </div>

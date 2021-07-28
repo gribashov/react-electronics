@@ -23,9 +23,9 @@ function Favorites({handleAddToFavorite}) {
             <path
               d="M6 11L1 6L6 1"
               stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
