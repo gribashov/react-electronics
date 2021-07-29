@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 import Card from "./../components/Card";
 import Info from "./../components/Info";
@@ -12,23 +13,25 @@ function Favorites({handleAddToFavorite}) {
   return (
     <div className="my-10">
       <div className="flex items-center mx-10">
-        <div className="w-8 h-8 flex justify-center items-center bg-black rounded-lg mr-4 cursor-pointer">
-          <svg
-            width="7"
-            height="12"
-            viewBox="0 0 7 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6 11L1 6L6 1"
-              stroke="white"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+        <Link to="/">
+          <div className="w-8 h-8 flex justify-center items-center bg-black rounded-lg mr-4 cursor-pointer">
+            <svg
+              width="7"
+              height="12"
+              viewBox="0 0 7 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 11L1 6L6 1"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </Link>
         <div className="font-bold text-3xl pr-2 truncate">Мои закладки</div>
       </div>
       {/* cards arr */}
