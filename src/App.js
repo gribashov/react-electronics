@@ -24,15 +24,15 @@ function App() {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const cartProductsResponse = await axios.get(
-          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart"
-        );
-        const favoriteProductsResponse = await axios.get(
-          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites"
-        );
-        const productsResponse = await axios.get(
-          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/products"
-        );
+        const [
+          cartProductsResponse,
+          favoriteProductsResponse,
+          productsResponse,
+        ] = await Promise.all([
+          axios.get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart"),
+          axios.get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites"),
+          axios.get("https://60f1ba8c38ecdf0017b0fda4.mockapi.io/products"),
+        ]);
         setIsLoadingPage(false);
 
         setCartProducts(cartProductsResponse.data);
