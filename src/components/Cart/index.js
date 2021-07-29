@@ -36,7 +36,8 @@ function Cart({onRemove, opened}) {
         }, 1000);
       }
     } catch (error) {
-      alert("error");
+      alert("Ошибка при запросе заказов");
+      console.error(error);
     }
     setIsLoadingOrder(false);
   };

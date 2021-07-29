@@ -13,13 +13,18 @@ function Orders() {
 
   React.useEffect(() => {
     (async () => {
-      const {data} = await axios.get(
-        "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/orders"
-      );
-      setTimeout(() => {
-        setIsLoadingOrders(false);
-      }, 1000);
-      setOrders(data);
+      try {
+        const {data} = await axios.get(
+          "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/orders"
+        );
+        setTimeout(() => {
+          setIsLoadingOrders(false);
+        }, 1000);
+        setOrders(data);
+      } catch (error) {
+        alert("Не удалось загрузить данные с сервера");
+        console.error(error);
+      }
     })();
   }, []);
 
