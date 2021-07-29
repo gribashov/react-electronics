@@ -4,7 +4,7 @@ import axios from "axios";
 import {Route} from "react-router-dom";
 // components
 import Header from "./components/Header";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/index.js";
 // pages
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
@@ -117,9 +117,13 @@ function App() {
     >
       <div className="App">
         {/* cart */}
-        {isVisibleCart && (
-          <Cart cartProducts={cartProducts} onRemove={handleRemoveFromCart} />
-        )}
+
+        <Cart
+          cartProducts={cartProducts}
+          onRemove={handleRemoveFromCart}
+          opened={isVisibleCart}
+        />
+
         {/* container */}
         <div className="wrapper mx-auto relative">
           {/* header */}
@@ -150,7 +154,7 @@ function App() {
             />
           </Route>
           <Route path="/orders" exact>
-            <Orders />
+            <Orders isLoadingPage={isLoadingPage} />
           </Route>
         </div>
       </div>

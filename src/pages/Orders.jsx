@@ -9,16 +9,25 @@ import ordersEmptyPng from "../assets/ordersEmptyPng.png";
 
 function Orders() {
   const [orders, setOrders] = React.useState([]);
+  const [isLoadingOrders, setIsLoadingOrders] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
       const {data} = await axios.get(
         "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/orders"
       );
-
+      setTimeout(() => {
+        setIsLoadingOrders(false);
+      }, 1000);
       setOrders(data);
     })();
   }, []);
+
+  const renderOrders = () => {
+    return orders.map(({products, id}) => (
+      <Order key={id} orders={products} id={id} loading={isLoadingOrders} />
+    ));
+  };
 
   return (
     <div className="my-10">
@@ -45,18 +54,9 @@ function Orders() {
         <div className="font-bold text-3xl pr-2 truncate">Мои покупки</div>
       </div>
       {/* orders arr */}
-      {orders.length ? (
-        orders.map(({id, products}) => (
-          <>
-            <div className="mx-10 mt-10 mb-5 font-bold text-2xl">
-              Заказ #{id}
-            </div>
-            <div class="border-b mx-10"></div>
-            <div className="flex items-center flex-wrap py-10">
-              <Order key={id} products={products} />
-            </div>
-          </>
-        ))
+
+      {(isLoadingOrders ? [...Array(12)] : orders).length ? (
+        renderOrders()
       ) : (
         <div className="flex items-center justify-center h-full py-10">
           <Info

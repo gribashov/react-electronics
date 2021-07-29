@@ -1,13 +1,15 @@
 import React from "react";
-import {AppContext} from "../App";
+import {AppContext} from "../../App";
 import axios from "axios";
 
-import Info from "./Info";
-import deliveryPng from "./../assets/deliveryPng.png";
-import emptyPng from "./../assets/emptyPng.png";
-import {useCart} from "../hooks/useCart";
+import Info from "../Info";
+import deliveryPng from "../../assets/deliveryPng.png";
+import emptyPng from "../../assets/emptyPng.png";
+import {useCart} from "../../hooks/useCart";
 
-function Cart({onRemove}) {
+import styles from "./Cart.module.scss";
+
+function Cart({onRemove, opened}) {
   const {handleCloseCart} = React.useContext(AppContext);
   const [isOrderSend, setIsOrderSend] = React.useState(false);
   const [orderID, setOrderID] = React.useState(null);
@@ -39,9 +41,13 @@ function Cart({onRemove}) {
     setIsLoadingOrder(false);
   };
   return (
-    <div className="overlay fixed left-0 top-0 mx-auto">
+    <div
+      className={`${styles.overlay} ${
+        opened ? `visible opacity-100` : `hidden opacity-0`
+      } fixed left-0 top-0 mx-auto`}
+    >
       {/* cart */}
-      <div className="cart fixed right-0 flex flex-col">
+      <div className={`${styles.cart} fixed right-0 flex flex-col`}>
         <div className="flex items-center justify-between mx-10 my-10">
           <div className="text-2xl font-bold">Корзина</div>
           <svg

@@ -17,7 +17,6 @@ function Card({
   onAdd,
   favorited = false,
   loading = false,
-  products,
 }) {
   const [isFav, setIsFav] = React.useState(favorited);
 
