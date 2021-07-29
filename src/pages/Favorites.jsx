@@ -37,9 +37,9 @@ function Favorites({handleAddToFavorite}) {
       {/* cards arr */}
       {favoriteProducts.length ? (
         <div className="flex items-center flex-wrap py-10">
-          {favoriteProducts.map((item, index) => (
+          {favoriteProducts.map((item) => (
             <Card
-              key={index}
+              key={item.id}
               onFav={(obj) => handleAddToFavorite(obj)}
               {...item}
               favorited={true}

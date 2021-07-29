@@ -48,18 +48,29 @@ function App() {
 
   const handleAddToCart = async (obj) => {
     try {
-      if (cartProducts.find((item) => Number(item.id) === Number(obj.id))) {
+      const findProduct = cartProducts.find(
+        (item) => Number(item.parentId) === Number(obj.id)
+      );
+      if (findProduct) {
         setCartProducts((prev) =>
-          prev.filter((item) => Number(item.id) !== Number(obj.id))
+          prev.filter((item) => Number(item.parentId) !== Number(obj.id))
         );
         await axios.delete(
-          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${obj.id}`
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${findProduct.id}`
         );
       } else {
         setCartProducts((prev) => [...prev, obj]);
-        await axios.post(
+        const {data} = await axios.post(
           "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart",
           obj
+        );
+        setCartProducts((prev) =>
+          prev.map((product) => {
+            if (product.parentId === data.parentId) {
+              return {...product, id: data.id};
+            }
+            return product;
+          })
         );
       }
     } catch (error) {
@@ -71,11 +82,11 @@ function App() {
   const handleAddToFavorite = async (obj) => {
     try {
       if (favoriteProducts.find((item) => Number(item.id) === Number(obj.id))) {
-        axios.delete(
-          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
-        );
         setFavoriteProducts((prev) =>
           prev.filter((item) => Number(item.id) !== Number(obj.id))
+        );
+        axios.delete(
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/favorites/${obj.id}`
         );
       } else {
         const {data} = await axios.post(
@@ -93,7 +104,9 @@ function App() {
   const handleRemoveFromCart = (id) => {
     try {
       axios.delete(`https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${id}`);
-      setCartProducts((prev) => prev.filter((product) => product.id !== id));
+      setCartProducts((prev) =>
+        prev.filter((product) => Number(product.id) !== Number(id))
+      );
     } catch (error) {
       alert("Ошибка при удалении из корзины");
       console.error(error);
@@ -109,7 +122,7 @@ function App() {
   };
 
   const productHasBeenAdded = (id) => {
-    return cartProducts.some((obj) => Number(obj.id) === Number(id));
+    return cartProducts.some((obj) => Number(obj.parentId) === Number(id));
   };
 
   const handleCloseCart = () => {

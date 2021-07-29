@@ -46,7 +46,6 @@ function Cart({onRemove, opened}) {
       className={`${styles.overlay} ${
         opened ? styles.visibleOverlay : ""
       } fixed left-0 top-0 mx-auto`}
-      onClick={handleCloseCart}
     >
       {/* cart */}
       <div className={`${styles.cart} fixed right-0 flex flex-col`}>

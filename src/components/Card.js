@@ -22,12 +22,15 @@ function Card({
 
   const {productHasBeenAdded} = React.useContext(AppContext);
 
+  const obj = {id, parentId: id, title, img, price};
+
   const onClickAdd = () => {
-    onAdd({id, title, img, price});
+    onAdd(obj);
+    console.log(obj);
   };
 
   const onClickFavorite = () => {
-    onFav({id, title, img, price});
+    onFav(obj);
     setIsFav(!isFav);
   };
 
