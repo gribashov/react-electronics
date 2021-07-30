@@ -138,6 +138,8 @@ function App() {
         favoriteProducts,
         productHasBeenAdded,
         handleCloseCart,
+        setIsVisibleCart,
+        isVisibleCart,
       }}
     >
       <div className="App">
