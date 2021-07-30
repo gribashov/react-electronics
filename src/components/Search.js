@@ -1,3 +1,4 @@
+// libraries
 import React from "react";
 
 function Search({searchValue, onChangeSearchInput, clearInput}) {

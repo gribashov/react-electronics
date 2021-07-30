@@ -1,9 +1,11 @@
+// libraries
 import React from "react";
 import {Link} from "react-router-dom";
-
-import {Order} from "./../components/Order";
-import Info from "./../components/Info";
 import axios from "axios";
+// components
+import {Order} from "./../components/Order";
+// pages
+import Info from "./../components/Info";
 
 import ordersEmptyPng from "../assets/ordersEmptyPng.png";
 

@@ -1,4 +1,6 @@
+// libraries
 import React from "react";
+
 import {AppContext} from "../App";
 
 export const useCart = () => {

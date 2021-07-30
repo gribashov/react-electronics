@@ -1,6 +1,7 @@
+// libraries
 import {Link} from "react-router-dom";
 import React from "react";
-
+// hooks
 import {useCart} from "../hooks/useCart";
 
 function Header(props) {

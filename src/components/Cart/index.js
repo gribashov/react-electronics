@@ -1,13 +1,18 @@
+// libraries
 import React from "react";
 import {AppContext} from "../../App";
 import axios from "axios";
-
+// pages
 import Info from "../Info";
+// hooks
+import {useCart} from "../../hooks/useCart";
+// styles
+import styles from "./Cart.module.scss";
+
 import deliveryPng from "../../assets/deliveryPng.png";
 import emptyPng from "../../assets/emptyPng.png";
-import {useCart} from "../../hooks/useCart";
 
-import styles from "./Cart.module.scss";
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Cart({onRemove, opened}) {
   const {handleCloseCart} = React.useContext(AppContext);
@@ -29,11 +34,10 @@ function Cart({onRemove, opened}) {
       setCartProducts([]);
       for (let i = 0; i < cartProducts.length; i++) {
         const product = cartProducts[i];
-        await setTimeout(function () {
-          axios.delete(
-            `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${product.id}`
-          );
-        }, 1000);
+        await axios.delete(
+          `https://60f1ba8c38ecdf0017b0fda4.mockapi.io/cart/${product.id}`
+        );
+        await delay(1000);
       }
     } catch (error) {
       alert("Ошибка при запросе заказов");

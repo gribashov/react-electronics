@@ -1,11 +1,13 @@
+// libraries
 import React from "react";
 import {Link} from "react-router-dom";
-
+// components
 import Card from "./../components/Card";
 import Info from "./../components/Info";
-import {AppContext} from "../App";
 
 import favEmptyPng from "../assets/favEmptyPng.png";
+
+import {AppContext} from "../App";
 
 function Favorites({handleAddToFavorite}) {
   const {favoriteProducts} = React.useContext(AppContext);
