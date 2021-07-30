@@ -1,7 +1,7 @@
 // libraries
 import React from "react";
 
-import {AppContext} from "../App";
+import {AppContext} from "../context";
 
 const Info = ({title, image, description}) => {
   const {handleCloseCart} = React.useContext(AppContext);

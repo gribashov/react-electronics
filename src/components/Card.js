@@ -7,7 +7,7 @@ import success from "./../assets/icons/success.svg";
 import grayFavicon from "./../assets/icons/gray-favicon.svg";
 import redFavicon from "./../assets/icons/red-favicon.svg";
 
-import {AppContext} from "../App";
+import {AppContext} from "../context";
 
 function Card({
   id,

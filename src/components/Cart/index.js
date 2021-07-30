@@ -1,6 +1,5 @@
 // libraries
 import React from "react";
-import {AppContext} from "../../App";
 import axios from "axios";
 // pages
 import Info from "../Info";
@@ -11,6 +10,8 @@ import styles from "./Cart.module.scss";
 
 import deliveryPng from "../../assets/deliveryPng.png";
 import emptyPng from "../../assets/emptyPng.png";
+
+import {AppContext} from "../../context";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

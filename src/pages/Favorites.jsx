@@ -7,7 +7,7 @@ import Info from "./../components/Info";
 
 import favEmptyPng from "../assets/favEmptyPng.png";
 
-import {AppContext} from "../App";
+import {AppContext} from "../context";
 
 function Favorites({handleAddToFavorite}) {
   const {favoriteProducts} = React.useContext(AppContext);

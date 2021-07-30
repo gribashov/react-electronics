@@ -5,7 +5,7 @@ import Search from "./../components/Search";
 import Card from "./../components/Card";
 import Banner from "./../components/Banner";
 
-import {AppContext} from "../App";
+import {AppContext} from "../context";
 
 function Home({
   searchValue,
