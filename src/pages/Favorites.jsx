@@ -15,7 +15,7 @@ function Favorites({handleAddToFavorite}) {
   return (
     <div className="my-10">
       <div className="flex items-center mx-10">
-        <Link to="/">
+        <Link to={process.env.PUBLIC_URL + "/"}>
           <div className="w-8 h-8 flex justify-center items-center bg-black rounded-lg mr-4 cursor-pointer">
             <svg
               width="7"

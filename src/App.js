@@ -162,7 +162,7 @@ function App() {
           <div className="w-full border-b"></div>
 
           {/* search field */}
-          <Route path="/" exact>
+          <Route path={process.env.PUBLIC_URL + "/"} exact>
             <Home
               searchValue={searchValue}
               onChangeSearchInput={onChangeSearchInput}
@@ -173,13 +173,13 @@ function App() {
             />
           </Route>
 
-          <Route path="/favorites" exact>
+          <Route path={process.env.PUBLIC_URL + "/favorites"} exact>
             <Favorites
               handleAddToCart={handleAddToCart}
               handleAddToFavorite={handleAddToFavorite}
             />
           </Route>
-          <Route path="/orders" exact>
+          <Route path={process.env.PUBLIC_URL + "/orders"} exact>
             <Orders isLoadingPage={isLoadingPage} />
           </Route>
         </div>

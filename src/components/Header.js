@@ -9,7 +9,7 @@ function Header(props) {
   return (
     <div className="flex items-center justify-between p-10">
       {/* left side */}
-      <Link to="/">
+      <Link to={process.env.PUBLIC_URL + "/"}>
         <div className="flex items-center">
           <svg
             className="cursor-pointer"
@@ -75,7 +75,7 @@ function Header(props) {
           </div>
         </div>
 
-        <Link to="/favorites" className="ml-6">
+        <Link to={process.env.PUBLIC_URL + "/favorites"} className="ml-6">
           <svg
             className="cursor-pointer"
             width="20"
@@ -90,7 +90,7 @@ function Header(props) {
             />
           </svg>
         </Link>
-        <Link to="/orders">
+        <Link to={process.env.PUBLIC_URL + "/orders"}>
           <svg
             className="ml-6 cursor-pointer"
             width="20"

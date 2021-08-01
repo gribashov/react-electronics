@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://gribashov.github.io/react-electronics/",
+  "proxy": "https://60f1ba8c38ecdf0017b0fda4.mockapi.io/",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.14.1",
