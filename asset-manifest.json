@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-electronics/static/css/main.37bf3f16.chunk.css",
-    "main.js": "/react-electronics/static/js/main.4df323bd.chunk.js",
-    "main.js.map": "/react-electronics/static/js/main.4df323bd.chunk.js.map",
+    "main.js": "/react-electronics/static/js/main.2a86db55.chunk.js",
+    "main.js.map": "/react-electronics/static/js/main.2a86db55.chunk.js.map",
     "runtime-main.js": "/react-electronics/static/js/runtime-main.a3a1b2e7.js",
     "runtime-main.js.map": "/react-electronics/static/js/runtime-main.a3a1b2e7.js.map",
     "static/js/2.0f2d6246.chunk.js": "/react-electronics/static/js/2.0f2d6246.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.a3a1b2e7.js",
     "static/js/2.0f2d6246.chunk.js",
     "static/css/main.37bf3f16.chunk.css",
-    "static/js/main.4df323bd.chunk.js"
+    "static/js/main.2a86db55.chunk.js"
   ]
 }
