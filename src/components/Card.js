@@ -27,12 +27,13 @@ function Card({
 
   const onClickAdd = () => {
     onAdd(obj);
-    console.log(obj);
   };
 
   const onClickFavorite = () => {
     onFav(obj);
     setIsFav(!isFav);
+
+    console.log(obj);
   };
 
   return (
@@ -56,16 +57,18 @@ function Card({
         ) : (
           <>
             <div className="absolute">
-              <div
-                onClick={onClickFavorite}
-                className="bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
-              >
-                <img
-                  src={isFav ? redFavicon : grayFavicon}
-                  alt="icon"
-                  className="select-none"
-                />
-              </div>
+              {onFav && (
+                <div
+                  onClick={onClickFavorite}
+                  className="bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
+                >
+                  <img
+                    src={isFav ? redFavicon : grayFavicon}
+                    alt="icon"
+                    className="select-none"
+                  />
+                </div>
+              )}
             </div>
             <img
               className="w-32 h-28 mx-2 flex-shrink-0 select-none"
@@ -78,20 +81,22 @@ function Card({
                 <small className="text-gray-400">ЦЕНА:</small>
                 <div className="font-bold text-base">{price} руб.</div>
               </div>
-              <div
-                onClick={onClickAdd}
-                className={
-                  productHasBeenAdded(id)
-                    ? "bg-custom-green w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
-                    : "bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
-                }
-              >
-                <img
-                  src={productHasBeenAdded(id) ? success : addicon}
-                  alt="icon"
-                  className="select-none"
-                />
-              </div>
+              {onAdd && (
+                <div
+                  onClick={onClickAdd}
+                  className={
+                    productHasBeenAdded(id)
+                      ? "bg-custom-green w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
+                      : "bg-white w-8 h-8 cursor-pointer rounded-md flex items-center justify-center"
+                  }
+                >
+                  <img
+                    src={productHasBeenAdded(id) ? success : addicon}
+                    alt="icon"
+                    className="select-none"
+                  />
+                </div>
+              )}
             </div>
           </>
         )}
